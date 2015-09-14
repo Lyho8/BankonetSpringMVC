@@ -36,9 +36,15 @@
 	
 	<bean id="dao" class="com.bankonet.dao.ClientDaoImpl"></bean>
 	
+	<bean id="danao" class="com.bankonet.dao.CompteDaoImpl"></bean>
+	
 	<bean id="metier" class="com.bankonet.metier.BankonetMetierImpl">
 		<property name="dao" ref="dao"></property>
-	</bean>	
+	</bean>
+	
+	<bean id="compteMetier" class="com.bankonet.metier.BankonetCompteMetierImpl">
+		<property name="danao" ref="danao"></property>
+	</bean>		
 	
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">

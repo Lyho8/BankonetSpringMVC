@@ -69,7 +69,6 @@
 			<th><spring:message code="page.clientsview.prenom" /></th>
 			<th><spring:message code="page.clientsview.edit" /></th>
 			<th><spring:message code="page.clientsview.delete" /></th>
-			<th>Comptes</th>
 		</tr>
 		<c:forEach items="${clients}" var="c">
 			<tr>
@@ -78,7 +77,6 @@
 				<td>${ c.prenom }</td>
 				<td><a href="/spring/editClient/${ c.id }">Editer</a></td>
 				<td><a href="/spring/deleteClient?id=${ c.id }">Supprimer</a></td>
-				<td><a href="/spring/comptes/${ c.id }/">Editer comptes</a></td>
 			</tr>
 		</c:forEach>
 	</table>

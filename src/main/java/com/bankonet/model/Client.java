@@ -1,12 +1,10 @@
  package com.bankonet.model;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.*;
+import javax.persistence.*;
+import javax.validation.constraints.*;
+import org.eclipse.persistence.annotations.*;
+import org.springframework.beans.factory.annotation.*;
 
 @Entity
 @DiscriminatorValue("C")
@@ -24,13 +22,15 @@ public class Client extends Personne  {
 	@Embedded
 	private Adresse adresse;
 	
+	@OneToMany(mappedBy="client", cascade=CascadeType.ALL)
+	@PrivateOwned
+	private List<Compte> comptes;	
 
 	public Client() {}
 
 	public Client(Adresse adresse) {
 	    this.adresse = adresse;
 	}
-	
 
 	public Client(String nom, String prenom, String login, String motDePasse, Adresse adresse) {
 		super(nom,prenom);
@@ -49,8 +49,6 @@ public class Client extends Personne  {
 		    		
 		
 	}
-
-
 	
 	public String getLogin() {
 		return login;
@@ -75,7 +73,14 @@ public class Client extends Personne  {
 	public void setAdresse(Adresse adresse) {
 		this.adresse = adresse;
 	}
-	
 
+	public List<Compte> getComptes() {
+		return comptes;
+	}
+
+	public void setComptes(List<Compte> comptes) {
+		this.comptes = comptes;
+	}
+	
   
 }
